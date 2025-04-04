@@ -107,36 +107,7 @@ function App() {
                     )}
                     <div className="mt-4">
                         <h4>Commentaires</h4>
-                        {comments.length === 0 ? (
-                            <Alert variant="info">
-                                Aucun commentaire pour le moment.
-                            </Alert>
-                        ) : (
-                            <ListGroup>
-                                {comments.map((comment) => (
-                                    <ListGroup.Item
-                                        key={comment.id}
-                                        className="d-flex justify-content-between align-items-center"
-                                    >
-                                        <span>
-                                            {comment.comment} (Note:{" "}
-                                            {comment.note})
-                                        </span>
-                                        <Button
-                                            variant="danger"
-                                            size="sm"
-                                            onClick={() =>
-                                                dispatch(
-                                                    deleteComment(comment.id)
-                                                )
-                                            }
-                                        >
-                                            Supprimer
-                                        </Button>
-                                    </ListGroup.Item>
-                                ))}
-                            </ListGroup>
-                        )}
+                        <p>Ajouter un commentaire</p>
                     </div>
                     <div className="mt-3">
                         <Form onSubmit={handleSubmit(onSubmit)}>
@@ -151,8 +122,11 @@ function App() {
                                 </p>
                             </Form.Group>
                             <Form.Group className="mb-2">
+                                <p>Note</p>
                                 <Form.Select {...register("note")}>
-                                    <option value="">Choisir une note</option>
+                                    <option value="">
+                                        Sélectionnez une note
+                                    </option>
                                     {[1, 2, 3, 4, 5].map((note) => (
                                         <option key={note} value={note}>
                                             {note}
@@ -177,6 +151,35 @@ function App() {
                                 Ajouter
                             </Button>
                         </Form>
+                        {comments.length === 0 ? (
+                            <Alert variant="info" className="mt-4">
+                                Aucun commentaire pour le moment.
+                            </Alert>
+                        ) : (
+                            <ListGroup className="mt-4">
+                                {comments.map((comment) => (
+                                    <ListGroup.Item
+                                        key={comment.id}
+                                        className="d-flex flex-column justify-content-between"
+                                    >
+                                        <b>Note: {comment.note}/5</b>
+                                        <span>{comment.comment}</span>
+                                        <Button
+                                            variant="danger"
+                                            size="sm"
+                                            onClick={() =>
+                                                dispatch(
+                                                    deleteComment(comment.id)
+                                                )
+                                            }
+                                            className="align-self-end"
+                                        >
+                                            Supprimer
+                                        </Button>
+                                    </ListGroup.Item>
+                                ))}
+                            </ListGroup>
+                        )}
                     </div>
                 </Col>
             </Row>
