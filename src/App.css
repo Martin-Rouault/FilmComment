@@ -1,0 +1,10 @@
+#root {
+    max-width: 550px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.card-img {
+    width: 100%;
+    object-fit: contain;
+}
