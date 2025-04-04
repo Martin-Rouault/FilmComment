@@ -60,7 +60,7 @@ function App() {
                 const data = await response.json();
                 setMovieInfo(data[0]);
             } catch (error) {
-                setError(error.message);
+                setError(`Une erreur est survenue. Détail :${error.message}`);
                 console.log(error.message);
             } finally {
                 setLoading(false);
@@ -81,9 +81,9 @@ function App() {
     return (
         <Container>
             <Row className="mt-4">
-                <Col md={{ span: 5, offset: 3 }}>
+                <Col md={{ span: 6, offset: 3 }}>
                     {movieInfo && (
-                        <Card>
+                        <Card className="card">
                             <Card.Img
                                 variant="top"
                                 src={movieInfo.poster_path}
